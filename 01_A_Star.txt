@@ -1,0 +1,119 @@
+Objective: Write a program to implement A* algorithm in python
+
+Theory: A* Search algorithm is one of the best and popular techniques used in path-finding and graph traversals. Consider a square grid having many obstacles and we are given a starting cell and a target cell. We want to reach the target cell (if possible) from the starting cell as quickly as possible. Here A* Search Algorithms come to the rescue. What A* Search Algorithm does is that at each step it picks the node according to a value ‘f’ which is a parameter equal to the sum of two other parameters – ‘g’ and ‘h’. At each step it picks the node/cell having the lowest ‘f’, and processes that node/cell. We define ‘g’ and ‘h’ as simply as possible below:
+g = the movement cost to move from the starting point to a given square on the grid, following the path generated to get there.
+h = the estimated movement cost to move from that given square on the grid to the final destination. This is often referred to as the heuristic, which is nothing but a kind of smart guess. We really don’t know the actual distance until we find the path, because all sorts of things can be in the way (walls, water, etc.). There can be many ways to calculate this ‘h’.
+
+Code:
+
+# Describe your graph here
+Graph_nodes = {
+    'A': [('B', 4), ('C', 3)],
+    'B': [('E', 12), ('F', 5)],
+    'C': [('E', 10), ('D', 7)],
+    'D': [('E', 2)],
+    'E': [('G', 5)],
+    'F': [('G', 16)],
+
+}
+def aStarAlgo(start_node, stop_node):
+    print('Starting Node = ' + start_node)
+    print('Goal Node = ' + stop_node)
+    print('The graph is as follows:')
+    print('A-B = 4, A-C = 3')
+    print('B-E = 12, B-F = 5')
+    print('C-E = 10, C-D = 7')
+    print('D-E = 2')
+    print('E-G = 5')
+    print('F-G = 16')
+   
+    open_set = set(start_node)
+    closed_set = set()
+    g = {}
+    parents = {}
+
+    g[start_node] = 0
+
+    parents[start_node] = start_node
+
+    while len(open_set) > 0:
+        n = None
+
+        for v in open_set:
+            if n is None or g[v] + heuristic(v) < g[n] + heuristic(n):
+                n = v
+
+        if n == stop_node or Graph_nodes[n] is None:
+            pass
+        else:
+            for (m, weight) in get_neighbors(n):
+                if m not in open_set and m not in closed_set:
+                    open_set.add(m)
+                    parents[m] = n
+                    g[m] = g[n] + weight
+
+                else:
+                    if g[m] > g[n] + weight:
+                        # update g(m)
+                        g[m] = g[n] + weight
+                        # change parent of m to n
+                        parents[m] = n
+
+                        # if m in closed set,remove and add to open
+                        if m in closed_set:
+                            closed_set.remove(m)
+                            open_set.add(m)
+
+        if n is None:
+            print('Path does not exist!')
+            return None
+
+        if n == stop_node:
+            path = []
+
+            while parents[n] != n:
+                path.append(n)
+                n = parents[n]
+
+            path.append(start_node)
+
+            path.reverse()
+
+            print('Path found: {}'.format(path))
+            return path
+
+        open_set.remove(n)
+        closed_set.add(n)
+
+    print('Path does not exist!')
+    return None
+
+def get_neighbors(v):
+    if v in Graph_nodes:
+        return Graph_nodes[v]
+    else:
+        return None
+
+
+def heuristic(n):
+    H_dist = {
+
+        'A': 14,
+        'B': 12,
+        'C': 11,
+        'D': 6,
+        'E': 4,
+        'F': 11,
+        'G': 0,
+
+    }
+
+    return H_dist[n]
+
+start_node = input("Enter starting node: ")
+goal_node = input("Enter goal node: ")
+#aStarAlgo('A', 'G')
+aStarAlgo(start_node, goal_node)
+
+Output: 
+

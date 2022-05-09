@@ -1,0 +1,67 @@
+Objective:  Write a program to implement BFS for water jug problem using Python
+
+Theory: You have a 4-gallon and a 3-gallon water jug. You have a pump with an unlimited amount of water. You need to get exactly 2 gallons in a 4-gallon jug. 
+State representation: (x, y)
+–x: Contents of four gallon
+–y: Contents of three gallon
+•Start state: (0, 0)
+•Goal state (2, n)
+Operators
+–Fill 3-gallon from pump, fill 4-gallon from pump
+–Fill 3-gallon from 4-gallon, fill 4-gallon from 3-gallon
+–Empty 3-gallon into 4-gallon, empty 4-gallon into 3-gallon
+–Dump 3-gallon down drain, dump 4-gallon down drain
+
+Code:
+from __future__ import annotations
+from collections import deque
+
+def jug_constraints(tup: tuple[int, int], jug_one: int, jug_two: int) -> bool:
+    if any([tup[0] > jug_one, tup[1] > jug_two, tup[0] < 0, tup[1] < 0]):
+        return True
+
+def water_jug(jug_one: int, jug_two: int, target_capacity: int) -> list[tuple[int, int]]:
+    initial_state: tuple[int, int] = (0, 0)
+    queue: deque[tuple[int, int]] = deque([initial_state])
+    result: list[tuple[int, int]] = [initial_state]
+    visited: dict[tuple[int, int], bool] = {
+        initial_state: True
+    }
+    while queue:
+        current_tup: tuple[int, int] = queue.popleft()
+        if current_tup not in visited and not jug_constraints(current_tup, jug_one, jug_two):
+            result.append(current_tup)
+            visited[current_tup] = True
+            if current_tup[0] == target_capacity or current_tup[1] == target_capacity:
+                if current_tup[0] == target_capacity and current_tup[1] != 0:
+                    result.append((current_tup[0], 0))
+                elif current_tup[0] != 0:
+                    result.append((0, current_tup[1]))
+                return result
+        queue.append((current_tup[0], jug_two))
+        queue.append((jug_one, current_tup[1]))
+        for pour_amt in range(max(jug_one, jug_two) + 1):
+            c, d = current_tup[0] + pour_amt, current_tup[1] - pour_amt
+            if (d >= 0 and d == 0) or c == jug_one:
+                queue.append((c, d))
+            if (d >= 0 and d == 0) or c == jug_two:
+                queue.append((d, c))
+        queue.append((jug_one, 0))
+        queue.append((0, jug_two))
+        
+if __name__.__contains__('__main__'):
+    data_map: dict[str, str] = {
+        'Name' : 'Yash Walia',
+        'Exp' : 'Water Jug Problem'
+    }
+    print(data_map)
+    jug_one, jug_two, target = [int(x) for x in input().split()]
+    
+    for ans_tup in water_jug(jug_one, jug_two, target):
+        print({'Water in Jug One': ans_tup[1], 'Water in Jug Two': ans_tup[0]})
+
+
+
+Output:
+
+

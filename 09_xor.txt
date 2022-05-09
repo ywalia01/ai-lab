@@ -1,0 +1,53 @@
+Objective: Design an XOR truth table using Python
+
+Theory: The XOR gate stands for the Exclusive-OR gate. This gate is a special type of gate used in different types of computational circuits.
+The XOR gate gives an output of 1 if either of the inputs is different, it gives 0 if they are the same. 
+
+
+
+Code:
+
+def decimalToBinary(n):
+    return bin(n).replace("0b", "")
+
+def xorTable(l):
+    for i in l:
+        for j in i:
+            if i.count('1') % 2 == 0:
+                output = '0'
+            else:
+                output = '1'
+            print(j, end="  ")
+        print("  ", output)
+
+
+print("Enter no. of inputs: ")
+n = int(input())
+
+if n == 2:
+    print("A  B C=A\'B + AB\'")
+elif n == 3:
+    print("A  B  C   D=ABC+A\'B\'C+AB\'C\'+A\'BC\'")
+
+l = []
+t = 2 ** n
+
+for i in range(t):
+    q = decimalToBinary(i)
+    q = str(q)
+    a = q.zfill(n)
+    l.append(a)
+
+if __name__ == '__main__':
+    xorTable(l)
+
+
+
+Output:
+
+
+
+
+
+
+

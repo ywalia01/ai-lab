@@ -1,0 +1,64 @@
+Objective: Implement Brute force solution to the Knapsack problem in Python
+
+Theory: A knapsack problem algorithm is a constructive approach to combinatorial optimization. The problem is basically about a given set of items, each with a specific weight and a value. Therefore the programmer needs to determine each item’s number to include in a collection so that the total weight is less than or equal to a given limit. And also, the total value is maximum. It derives its name from the fixed-size knapsack that must be filled up to its limit with the most valuable items.
+
+0/1 knapsack problem is a special case knapsack problem that does not fill the knapsack with fractional items.
+
+Code:
+
+import itertools
+from xml.etree.ElementPath import find
+
+def find_combination(nums):
+    result: list = []
+    for idx in range(len(nums)):
+        for sub_set in itertools.combinations(nums, idx):
+            result.append(list(sub_set))
+    
+    result.pop(0)
+    result.append(nums)
+    return result
+
+wt = [2, 5, 10,5]
+val = [20, 30, 50, 10]
+W = 16
+n = len(val)
+print("Item\tWeight\tValue")
+
+for i in range(n):
+    print(i+1,"\t",wt[i],"\t",val[i])
+print("Knapsack Capacity:",W)
+result= find_combination([1,2,3,4])
+
+tw=[]
+tp=[]
+w=0
+p=0
+
+for item in result:
+    for i in item:
+        w+=wt[i-1]
+        p+=val[i-1]
+    tw.append(w)
+    tp.append(p)
+    w=0
+    p=0
+max=tp[0]
+maxindex=0
+
+print("Item  Weight Profit \n")
+
+for i in range(len(result)):
+    if tw[i]>W:
+        print(result[i],"-->",tw[i],"-->",tp[i],"--->","Not feasible")
+    else:
+        print(result[i],"-->",tw[i],"-->",tp[i])
+        if max<tp[i]:
+            max=tp[i]
+            maxindex=i
+print("\n\nThe solution is...")
+print("Item: ",result[maxindex], "Max Profit", tp[maxindex])
+
+Output:
+
+

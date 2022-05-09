@@ -1,0 +1,53 @@
+Objective: Write a program to implement Single Player Game
+
+Theory: Artificial intelligence's game-playing area is crucial. Games do not need a great deal of information; all we need to know are the rules, allowed movements, and the circumstances for winning or losing the game. The majority of games need the participation of numerous participants. Single-player games, on the other hand, are distinct in terms of the challenges they present to the player. A one-player game is a struggle alone against an aspect of the environment (an artificial opponent), one's own talents, time, or chance, as opposed to a game with several players competing with or against each other to attain the game's goal. 
+
+Code:
+import math
+import random
+
+r = ['tree','sun','ball','moon','earth','grass','world']
+def guess_game():
+
+    word = random.choice(r)
+    len_of_word = len(word)
+    moves = math.floor(0.8*len_of_word)
+    hidden_word = []
+    hidden_word = ["_ "]*len_of_word
+    print("Your word = ", end=" ")
+    print("_ "*len_of_word)
+    guesses_made=[]
+
+    while moves > 0:
+        guess = input("\nGuess a character: ")
+        contains= False
+        if guess in guesses_made:
+            print("You already guessed ", guess)
+            continue
+        else:
+            guesses_made.append(guess)
+        for idx in range(len_of_word): 
+
+            if word[idx] in guess:
+                print(guess, end=" ")
+                hidden_word[idx]=guess
+                contains= True
+            elif hidden_word[idx] != "_ ":
+                print(hidden_word[idx], end=" ")
+            else:
+                print("_ ", end=" ")
+        if contains == False:
+            moves = moves-1
+            print("\n\nWrong Guess", moves, " moves left ")
+        else:
+            print("\n\nCorrect Guess")
+        if ("".join(hidden_word) == word):
+            print("The word is: ", word)
+            print(" You Won!")
+            return
+    print("Out of Guesses!")
+    print("The word was: ", word)
+    return
+guess_game()        
+
+Output:

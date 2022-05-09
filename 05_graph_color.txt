@@ -1,0 +1,56 @@
+Objective: Implement Graph coloring problem using python
+
+Theory: Graph coloring problem is to assign colors to certain elements of a graph subject to certain constraints. 
+
+Vertex coloring is the most common graph coloring problem. The problem is, given m colors, find a way of coloring the vertices of a graph such that no two adjacent vertices are colored using the same color. The other graph coloring problems like Edge Coloring (No vertex is incident to two edges of same color) and Face Coloring (Geographical Map Coloring) can be transformed into vertex coloring. 
+
+
+
+Chromatic Number: The smallest number of colors needed to color a graph G is called its chromatic number. For example, the following can be colored a minimum 2 colors. 
+ 
+vertex_coloring
+
+
+The problem to find the chromatic number of a given graph is NP Complete.
+
+Applications of Graph Coloring:
+
+Making a Schedule or Time Table: Suppose we want to make an exam schedule for a university. We have listed different subjects and students enrolled in every subject. Many subjects would have common students (of the same batch, some backlog students, etc). How do we schedule the exam so that no two exams with a common student are scheduled at same time? How many minimum time slots are needed to schedule all exams? This problem can be represented as a graph where every vertex is a subject and an edge between two vertices means there is a common student. So this is a graph coloring problem where the minimum number of time slots is equal to the chromatic number of the graph.
+
+Code: 
+colors = ['Red', 'Blue', 'Green', 'Yellow', 'Black','Pink','Grey','Violet']
+states = ['a', 'b', 'c', 'd','e','f']
+neighbors = {}
+neighbors['a'] = ['b', 'c','d']
+neighbors['b'] = ['a', 'c']
+neighbors['c'] = ['a', 'd', 'e']
+neighbors['d'] = ['c', 'e']
+neighbors['e'] = ['d', 'c','f']
+neighbors['f'] = ['c', 'e']
+colors_of_states = {}
+
+def promising(state, color):
+
+    for neighbor in neighbors.get(state): 
+        color_of_neighbor = colors_of_states.get(neighbor)
+        if color_of_neighbor == color:
+            return False
+    
+    return True
+
+def get_color_for_state(state):
+    for color in colors:
+        if promising(state, color):
+            return color
+            
+def main():
+    for state in states:
+        colors_of_states[state] = get_color_for_state(state)
+    
+    print (colors_of_states)
+    print("CHROMATIC NUMBER IS:",len(set(colors_of_states.values())))
+
+main()
+
+Output:
+
