@@ -61,4 +61,4 @@ print("Item: ",result[maxindex], "Max Profit", tp[maxindex])
 
 Output:
 
-
+https://lh3.googleusercontent.com/ao6jSswsaSzRajOzsLXHZ8-3pZmduHEQfPZ2WakuE0URa6X785tV972WwvSLNCR1g_TUnJ920oTmWYGdWqMQiXGVl61ms1lUOV4SNmtl--R8AeStyuTZw2fxN-32HeiCKsNpC_CXcQrT1wvOYg

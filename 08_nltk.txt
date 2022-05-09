@@ -30,12 +30,8 @@ print('\n\nOutput of Punctuation Tokenizer: \n', wp.tokenize(text))
 
 Output:
 
+https://lh6.googleusercontent.com/HCqkN9fuXjEpmi-tZQgMo4q1HnWGWD5HpEIEiWR7rAjm3bTAUH8ano2tX7KxHyVng-vexKwgu6edkUqCLOiLplx_sTCQ6RocIkLtjpwN3NY0SlYgc2Nq90MZi8qD6-VbIwOpc6OVMwcsDJX0Mg
 
+https://lh5.googleusercontent.com/tTjcnRAvx8ZoeXJfhuh33afruy1w5BK819pP1iTgaa48_G_E1QEG-HgMw3imvzw0_wGZ5jShBS-OAMXl7BMm8l2h5801S4iJdCOfLl6uSgF7OCyPnlVtA5uhnNd7AiOVOhIVykxhRZkeKPLWMQ
 
-
-
-
-
-
-
-
+https://lh3.googleusercontent.com/-4RIoAdTgCZ0Rdrxm46FfBrC8KLrSVHNq9AUU_jz-Z0ASJmSJoIJda105cTumZrsFJSdOPWG1GAXD0tHooGVdZJkLmeP7n2dp0GKJfAlPZEMc3j-5M4laG9W_fIGPye-3p67YHzjDMlurfDKAw

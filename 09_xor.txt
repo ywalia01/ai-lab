@@ -45,9 +45,4 @@ if __name__ == '__main__':
 
 Output:
 
-
-
-
-
-
-
+https://lh3.googleusercontent.com/mM-k7ClfUDVVS12ZN5BXZ-kKTWPaHxkY3jSpZZLrDZDKXhV6hAdEzhuwpAh3xrMLZDeYqW2KaAvQqK9VGmHmEmEzFv8QvAPqG9toNmzagWF8tD_g4o26lCFOsF4CI0nCJyWPghqCI3FCV2OI7A
